@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,9 +13,6 @@ namespace WCF
     public interface IService1
     {
         [OperationContract]
-        string GetDownloadFileData(DownloadFile downloadFile); 
-        
-        [OperationContract]
-        void DownloadFile(string fileUrl, string savePath);
+        void DownloadFile(string fileUrl, string folderPath);
     }
 }

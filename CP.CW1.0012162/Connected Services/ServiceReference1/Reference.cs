@@ -9,158 +9,18 @@
 
 namespace ServiceReference1
 {
-    using System.Runtime.Serialization;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DownloadFile", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-    public partial class DownloadFile : object
-    {
-        
-        private System.DateTime dateTimeField;
-        
-        private int idField;
-        
-        private string nameField;
-        
-        private ServiceReference1.Priority priorityField;
-        
-        private ServiceReference1.Status statusField;
-        
-        private string urlField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime dateTime
-        {
-            get
-            {
-                return this.dateTimeField;
-            }
-            set
-            {
-                this.dateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string name
-        {
-            get
-            {
-                return this.nameField;
-            }
-            set
-            {
-                this.nameField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.Priority priority
-        {
-            get
-            {
-                return this.priorityField;
-            }
-            set
-            {
-                this.priorityField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ServiceReference1.Status status
-        {
-            get
-            {
-                return this.statusField;
-            }
-            set
-            {
-                this.statusField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string url
-        {
-            get
-            {
-                return this.urlField;
-            }
-            set
-            {
-                this.urlField = value;
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Priority", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-    public enum Priority : int
-    {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Highest = 5,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        AboveNormal = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Normal = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        BelowNormal = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Lowest = 1,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
-    public enum Status : int
-    {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Downloading = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Downloaded = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Canceled = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Paused = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Waiting = 4,
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadFileData", ReplyAction="http://tempuri.org/IService1/GetDownloadFileDataResponse")]
-        void GetDownloadFileData(ServiceReference1.DownloadFile downloadFile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
+        void DownloadFile(string fileUrl, string folderPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadFileData", ReplyAction="http://tempuri.org/IService1/GetDownloadFileDataResponse")]
-        System.Threading.Tasks.Task GetDownloadFileDataAsync(ServiceReference1.DownloadFile downloadFile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
+        System.Threading.Tasks.Task DownloadFileAsync(string fileUrl, string folderPath);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
@@ -213,14 +73,14 @@ namespace ServiceReference1
         {
         }
         
-        public void GetDownloadFileData(ServiceReference1.DownloadFile downloadFile)
+        public void DownloadFile(string fileUrl, string folderPath)
         {
-            base.Channel.GetDownloadFileData(downloadFile);
+            base.Channel.DownloadFile(fileUrl, folderPath);
         }
         
-        public System.Threading.Tasks.Task GetDownloadFileDataAsync(ServiceReference1.DownloadFile downloadFile)
+        public System.Threading.Tasks.Task DownloadFileAsync(string fileUrl, string folderPath)
         {
-            return base.Channel.GetDownloadFileDataAsync(downloadFile);
+            return base.Channel.DownloadFileAsync(fileUrl, folderPath);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
