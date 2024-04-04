@@ -35,13 +35,18 @@ namespace CP.CW1._0012162
         {
             try
             {
-                string fileUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
-
-                for (int i = 0; i < 20; i++)
+                if (string.IsNullOrEmpty(tbxTargetPath.Text))
                 {
-                    serviceClient.DownloadFile(fileUrl, Properties.Settings.Default.Path);
-                }
-
+                    MessageBox.Show("Choose the folder for downloadable file");
+                } 
+                else if(string.IsNullOrEmpty(tbxUrl.Text))
+                {
+                    MessageBox.Show("Write the file Url to download");
+                } 
+                else
+                {
+                    serviceClient.DownloadFile(tbxUrl.Text, Properties.Settings.Default.Path);
+                };
             }
             catch (Exception ex)
             {
