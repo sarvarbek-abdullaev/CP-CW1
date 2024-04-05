@@ -15,10 +15,21 @@ namespace WCF
     {
         private static Semaphore semaphore = new Semaphore(2, 2); // Allow 2 concurrent downloads
         private static readonly string logFilePath = "C:\\Users\\User\\Desktop\\logs.txt"; // Path to the log file
-
+        private static List<DownloadItem> downloadItems = new List<DownloadItem>();
         public static int i = 1;
-        
-        public void DownloadFile(string fileUrl, string folderPath)
+
+        public List<DownloadItem> GetDownloadQueue()
+        {
+            return downloadItems;
+        }
+
+        public List<DownloadItem> AddNewDownloadItem(DownloadItem item)
+        {
+            downloadItems.Add(item);
+            return downloadItems;
+        }
+
+        public List<DownloadItem> DownloadFile(DownloadItem item)
         {
             try
             {
@@ -28,20 +39,23 @@ namespace WCF
 
                 lock (this) // Ensure atomic check and download operation
                 {
-                    string fileName = Path.GetFileName(fileUrl);
-                    string filePath = Path.Combine(folderPath, GetUniqueFileName(folderPath, fileName));
+                    DownloadItem downloadItem = downloadItems.FirstOrDefault(i => i.TaskId == item.TaskId);
+
+                    string fileName = Path.GetFileName(item.Url);
+                    string filePath = Path.Combine(item.TargetPath, GetUniqueFileName(item.TargetPath, fileName));
 
                     if (!File.Exists(filePath))
                     {
                         WebClient webClient = new WebClient();
-                        byte[] fileBytes = webClient.DownloadData(fileUrl);
+                        byte[] fileBytes = webClient.DownloadData(item.Url);
                         File.WriteAllBytes(filePath, fileBytes);
+                        downloadItem.Progress = 100;
+                        
                         Console.WriteLine($"File downloaded and saved: {filePath}"); // Log file download
-                    }else
-                    {
-                        //Log($"File already exists: {filePath}"); // Log file existence
-                    }
+                    };
                     i++;
+
+                    return downloadItems;
                 }
             }
             catch (Exception ex)

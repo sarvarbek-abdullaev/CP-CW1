@@ -9,27 +9,191 @@
 
 namespace ServiceReference1
 {
+    using System.Runtime.Serialization;
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DownloadItem", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
+    public partial class DownloadItem : object
+    {
+        
+        private string ErrorMessageField;
+        
+        private ServiceReference1.DownloadItemPriority PriorityField;
+        
+        private int ProgressField;
+        
+        private ServiceReference1.DownloadItemStatus StatusField;
+        
+        private string TargetPathField;
+        
+        private string TaskIdField;
+        
+        private string UrlField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage
+        {
+            get
+            {
+                return this.ErrorMessageField;
+            }
+            set
+            {
+                this.ErrorMessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceReference1.DownloadItemPriority Priority
+        {
+            get
+            {
+                return this.PriorityField;
+            }
+            set
+            {
+                this.PriorityField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Progress
+        {
+            get
+            {
+                return this.ProgressField;
+            }
+            set
+            {
+                this.ProgressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceReference1.DownloadItemStatus Status
+        {
+            get
+            {
+                return this.StatusField;
+            }
+            set
+            {
+                this.StatusField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TargetPath
+        {
+            get
+            {
+                return this.TargetPathField;
+            }
+            set
+            {
+                this.TargetPathField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TaskId
+        {
+            get
+            {
+                return this.TaskIdField;
+            }
+            set
+            {
+                this.TaskIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url
+        {
+            get
+            {
+                return this.UrlField;
+            }
+            set
+            {
+                this.UrlField = value;
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DownloadItemPriority", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
+    public enum DownloadItemPriority : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Normal = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        High = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DownloadItemStatus", Namespace="http://schemas.datacontract.org/2004/07/WCF")]
+    public enum DownloadItemStatus : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Queued = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Paused = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cancelled = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Downloading = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Error = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Finished = 5,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
-        void DownloadFile(string fileUrl, string folderPath);
+        ServiceReference1.DownloadItem[] DownloadFile(ServiceReference1.DownloadItem item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
-        System.Threading.Tasks.Task DownloadFileAsync(string fileUrl, string folderPath);
+        System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> DownloadFileAsync(ServiceReference1.DownloadItem item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadQueue", ReplyAction="http://tempuri.org/IService1/GetDownloadQueueResponse")]
+        ServiceReference1.DownloadItem[] GetDownloadQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadQueue", ReplyAction="http://tempuri.org/IService1/GetDownloadQueueResponse")]
+        System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> GetDownloadQueueAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewDownloadItem", ReplyAction="http://tempuri.org/IService1/AddNewDownloadItemResponse")]
+        ServiceReference1.DownloadItem[] AddNewDownloadItem(ServiceReference1.DownloadItem item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewDownloadItem", ReplyAction="http://tempuri.org/IService1/AddNewDownloadItemResponse")]
+        System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> AddNewDownloadItemAsync(ServiceReference1.DownloadItem item);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public interface IService1Channel : ServiceReference1.IService1, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     public partial class Service1Client : System.ServiceModel.ClientBase<ServiceReference1.IService1>, ServiceReference1.IService1
     {
         
@@ -73,14 +237,34 @@ namespace ServiceReference1
         {
         }
         
-        public void DownloadFile(string fileUrl, string folderPath)
+        public ServiceReference1.DownloadItem[] DownloadFile(ServiceReference1.DownloadItem item)
         {
-            base.Channel.DownloadFile(fileUrl, folderPath);
+            return base.Channel.DownloadFile(item);
         }
         
-        public System.Threading.Tasks.Task DownloadFileAsync(string fileUrl, string folderPath)
+        public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> DownloadFileAsync(ServiceReference1.DownloadItem item)
         {
-            return base.Channel.DownloadFileAsync(fileUrl, folderPath);
+            return base.Channel.DownloadFileAsync(item);
+        }
+        
+        public ServiceReference1.DownloadItem[] GetDownloadQueue()
+        {
+            return base.Channel.GetDownloadQueue();
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> GetDownloadQueueAsync()
+        {
+            return base.Channel.GetDownloadQueueAsync();
+        }
+        
+        public ServiceReference1.DownloadItem[] AddNewDownloadItem(ServiceReference1.DownloadItem item)
+        {
+            return base.Channel.AddNewDownloadItem(item);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> AddNewDownloadItemAsync(ServiceReference1.DownloadItem item)
+        {
+            return base.Channel.AddNewDownloadItemAsync(item);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
