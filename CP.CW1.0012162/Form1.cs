@@ -91,16 +91,116 @@ namespace CP.CW1._0012162
             }
         }
 
+        private void btnDownload1_Click(object sender, EventArgs e)
+        {
+            progressBar1.Value = 0;
+            btnDownload1.Text = "Download";
+            btnCancel1.Enabled = true;
+            btnGetNext1.Visible = false;
+
+            DownloadItem item = FindFileGoingToBeDownloaded();
+            DownloadFile(item);
+
+            progressBar1.Value = 100;
+            btnCancel1.Enabled = false;
+            btnDownload1.Text = "Download again";
+            btnGetNext1.Visible = true;
+        }
+
+        private void btnDownload2_Click(object sender, EventArgs e)
+        {
+            progressBar2.Value = 0;
+            btnDownload2.Text = "Download";
+            btnCancel2.Enabled = true;
+            btnGetNext2.Visible = false;
+
+            DownloadItem item = FindFileGoingToBeDownloaded();
+            DownloadFile(item);
+
+            progressBar2.Value = 100;
+            btnCancel2.Enabled = false;
+            btnDownload2.Text = "Download again";
+            btnGetNext2.Visible = true;
+        }
+
+        private void btnDownload3_Click(object sender, EventArgs e)
+        {
+            progressBar3.Value = 0;
+            btnDownload3.Text = "Download";
+            btnCancel3.Enabled = true;
+            btnGetNext3.Visible = false;
+
+            DownloadItem item = FindFileGoingToBeDownloaded();
+            DownloadFile(item);
+
+            progressBar3.Value = 100;
+            btnCancel3.Enabled = false;
+            btnDownload3.Text = "Download again";
+            btnGetNext3.Visible = true;
+        }
+
+        private void btnCancel1_Click(object sender, EventArgs e)
+        {
+            // Cancel the webClient;
+        }
+
+        private void btnCancel2_Click(object sender, EventArgs e)
+        {
+            // Cancel the webClient;
+        }
+
+        private void btnCancel3_Click(object sender, EventArgs e)
+        {
+            // Cancel the webClient;
+        }
+
+        private void btnGetNext1_Click(object sender, EventArgs e)
+        {
+            progressBar1.Value = 0;
+            btnDownload1.Text = "Download";
+        }
+
+        private void btnGetNext2_Click(object sender, EventArgs e)
+        {
+            progressBar2.Value = 0;
+            btnDownload2.Text = "Download";
+        }
+
+        private void btnGetNext3_Click(object sender, EventArgs e)
+        {
+            progressBar3.Value = 0;
+            btnDownload3.Text = "Download";
+        }
+
         private DownloadItem FindFileGoingToBeDownloaded()
         {
             try
             {
-                //for (int i = 0; i < items.Length; i++)
-                //{
-                //    return items[i];
-                //}
-                return items[0];
+                // Filter out items that have already been downloaded (progress is 100)
+                var remainingItems = items.Where(item => item.Progress != 100).ToList();
 
+                // Sort the remaining items based on Priority
+                var sortedItems = remainingItems.OrderBy(item =>
+                {
+                    if (item.Priority == DownloadItemPriority.High)
+                        return 0;
+                    else if (item.Priority == DownloadItemPriority.Normal)
+                        return 1;
+                    else // Low
+                        return 2;
+                }).ToList();
+
+
+                if (sortedItems.Count > 0)
+                {
+                    // Return the item at index 0 (which has the highest priority)
+                    return sortedItems[0];
+                }
+                else
+                {
+                    MessageBox.Show("No files to download.");
+                    return null;
+                }
             }
             catch (Exception ex)
             {
@@ -109,14 +209,13 @@ namespace CP.CW1._0012162
             return null;
         }
 
-        private async void DownloadFile(DownloadItem item)
+        private void DownloadFile(DownloadItem item)
         {
             try
             {
-                DownloadItem[] items = serviceClient.DownloadFile(item);
+                items = serviceClient.DownloadFile(item);
 
                 listView.Items.Clear();
-
                 // Add each item from the 'items' list to the ListView
                 for (int i = 0; i < items.Length; i++)
                 {
@@ -137,60 +236,6 @@ namespace CP.CW1._0012162
             {
                 MessageBox.Show($"Error downloading file: {ex.Message}");
             }
-        }
-
-        private void btnDownload1_Click(object sender, EventArgs e)
-        {
-            btnGetNext1.Visible = false;
-            DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
-
-            progressBar1.Value = 100;
-            btnGetNext1.Visible = true;
-        }
-
-        private void btnDownload2_Click(object sender, EventArgs e)
-        {
-            btnGetNext2.Visible = false;
-            DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
-
-            progressBar2.Value = 100;
-            btnGetNext2.Visible = true;
-        }
-
-        private void btnDownload3_Click(object sender, EventArgs e)
-        {
-            btnGetNext3.Visible = false;
-            DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
-
-            progressBar3.Value = 100;
-            btnGetNext3.Visible = true;
-        }
-
-        private void btnGetNext1_Click(object sender, EventArgs e)
-        {
-            btnGetNext1.Visible = false;
-            progressBar1.Value = 0;
-
-            // need to update the label
-        }
-
-        private void btnGetNext2_Click(object sender, EventArgs e)
-        {
-            btnGetNext2.Visible = false;
-            progressBar2.Value = 0;
-
-            // need to update the label
-        }
-
-        private void btnGetNext3_Click(object sender, EventArgs e)
-        {
-            btnGetNext3.Visible = false;
-            progressBar3.Value = 0;
-
-            // need to update the label
         }
     }
 }

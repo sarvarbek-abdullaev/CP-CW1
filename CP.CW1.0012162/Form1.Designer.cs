@@ -33,7 +33,6 @@
             label1 = new Label();
             label2 = new Label();
             tbxTargetPath = new TextBox();
-            button1 = new Button();
             btnTarget = new Button();
             label3 = new Label();
             cbxPriority = new ComboBox();
@@ -54,6 +53,9 @@
             btnDownload3 = new Button();
             btnDownload2 = new Button();
             btnDownload1 = new Button();
+            btnCancel3 = new Button();
+            btnCancel2 = new Button();
+            btnCancel1 = new Button();
             btnGetNext3 = new Button();
             btnGetNext2 = new Button();
             btnGetNext1 = new Button();
@@ -64,7 +66,7 @@
             // 
             tbxUrl.Location = new Point(290, 30);
             tbxUrl.Name = "tbxUrl";
-            tbxUrl.Size = new Size(514, 35);
+            tbxUrl.Size = new Size(640, 35);
             tbxUrl.TabIndex = 0;
             // 
             // label1
@@ -91,15 +93,6 @@
             tbxTargetPath.Name = "tbxTargetPath";
             tbxTargetPath.Size = new Size(514, 35);
             tbxTargetPath.TabIndex = 2;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(836, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(89, 37);
-            button1.TabIndex = 4;
-            button1.Text = "Ok";
-            button1.UseVisualStyleBackColor = true;
             // 
             // btnTarget
             // 
@@ -256,12 +249,45 @@
             btnDownload1.UseVisualStyleBackColor = true;
             btnDownload1.Click += btnDownload1_Click;
             // 
+            // btnCancel3
+            // 
+            btnCancel3.Enabled = false;
+            btnCancel3.Location = new Point(931, 620);
+            btnCancel3.Name = "btnCancel3";
+            btnCancel3.Size = new Size(174, 37);
+            btnCancel3.TabIndex = 24;
+            btnCancel3.Text = "Cancel";
+            btnCancel3.UseVisualStyleBackColor = true;
+            btnCancel3.Click += btnCancel3_Click;
+            // 
+            // btnCancel2
+            // 
+            btnCancel2.Enabled = false;
+            btnCancel2.Location = new Point(931, 554);
+            btnCancel2.Name = "btnCancel2";
+            btnCancel2.Size = new Size(174, 37);
+            btnCancel2.TabIndex = 23;
+            btnCancel2.Text = "Cancel";
+            btnCancel2.UseVisualStyleBackColor = true;
+            btnCancel2.Click += btnCancel2_Click;
+            // 
+            // btnCancel1
+            // 
+            btnCancel1.Enabled = false;
+            btnCancel1.Location = new Point(931, 488);
+            btnCancel1.Name = "btnCancel1";
+            btnCancel1.Size = new Size(174, 40);
+            btnCancel1.TabIndex = 22;
+            btnCancel1.Text = "Cancel";
+            btnCancel1.UseVisualStyleBackColor = true;
+            btnCancel1.Click += btnCancel1_Click;
+            // 
             // btnGetNext3
             // 
-            btnGetNext3.Location = new Point(945, 620);
+            btnGetNext3.Location = new Point(1115, 623);
             btnGetNext3.Name = "btnGetNext3";
             btnGetNext3.Size = new Size(174, 37);
-            btnGetNext3.TabIndex = 24;
+            btnGetNext3.TabIndex = 30;
             btnGetNext3.Text = "Get Next";
             btnGetNext3.UseVisualStyleBackColor = true;
             btnGetNext3.Visible = false;
@@ -269,10 +295,10 @@
             // 
             // btnGetNext2
             // 
-            btnGetNext2.Location = new Point(945, 554);
+            btnGetNext2.Location = new Point(1115, 557);
             btnGetNext2.Name = "btnGetNext2";
             btnGetNext2.Size = new Size(174, 37);
-            btnGetNext2.TabIndex = 23;
+            btnGetNext2.TabIndex = 29;
             btnGetNext2.Text = "Get Next";
             btnGetNext2.UseVisualStyleBackColor = true;
             btnGetNext2.Visible = false;
@@ -280,10 +306,10 @@
             // 
             // btnGetNext1
             // 
-            btnGetNext1.Location = new Point(945, 488);
+            btnGetNext1.Location = new Point(1115, 491);
             btnGetNext1.Name = "btnGetNext1";
-            btnGetNext1.Size = new Size(174, 40);
-            btnGetNext1.TabIndex = 22;
+            btnGetNext1.Size = new Size(174, 37);
+            btnGetNext1.TabIndex = 28;
             btnGetNext1.Text = "Get Next";
             btnGetNext1.UseVisualStyleBackColor = true;
             btnGetNext1.Visible = false;
@@ -293,13 +319,7 @@
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1152, 678);
-            Controls.Add(btnGetNext3);
-            Controls.Add(btnGetNext2);
-            Controls.Add(btnGetNext1);
-            Controls.Add(btnDownload3);
-            Controls.Add(btnDownload2);
-            Controls.Add(btnDownload1);
+            ClientSize = new Size(1301, 783);
             Controls.Add(progressLabelName3);
             Controls.Add(progressLabelName2);
             Controls.Add(progressLabelName1);
@@ -311,11 +331,19 @@
             Controls.Add(cbxPriority);
             Controls.Add(label3);
             Controls.Add(btnTarget);
-            Controls.Add(button1);
             Controls.Add(label2);
             Controls.Add(tbxTargetPath);
             Controls.Add(label1);
             Controls.Add(tbxUrl);
+            Controls.Add(btnGetNext3);
+            Controls.Add(btnGetNext2);
+            Controls.Add(btnGetNext1);
+            Controls.Add(btnCancel3);
+            Controls.Add(btnCancel2);
+            Controls.Add(btnCancel1);
+            Controls.Add(btnDownload3);
+            Controls.Add(btnDownload2);
+            Controls.Add(btnDownload1);
             Name = "Form1";
             Text = "Download Manager";
             ((System.ComponentModel.ISupportInitialize)dataSet1BindingSource).EndInit();
@@ -329,7 +357,6 @@
         private Label label1;
         private Label label2;
         private TextBox tbxTargetPath;
-        private Button button1;
         private Button btnTarget;
         private Label label3;
         private ComboBox cbxPriority;
@@ -350,6 +377,9 @@
         private Button btnDownload3;
         private Button btnDownload2;
         private Button btnDownload1;
+        private Button btnCancel3;
+        private Button btnCancel2;
+        private Button btnCancel1;
         private Button btnGetNext3;
         private Button btnGetNext2;
         private Button btnGetNext1;
