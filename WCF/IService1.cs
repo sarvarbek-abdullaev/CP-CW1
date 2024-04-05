@@ -30,6 +30,7 @@ namespace WCF
     public class DownloadItem
     {
         [DataMember]
+        public int Id {  get; set; }
         public string TaskId { get; set; }
 
         [DataMember]

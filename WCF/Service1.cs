@@ -39,7 +39,7 @@ namespace WCF
 
                 lock (this) // Ensure atomic check and download operation
                 {
-                    DownloadItem downloadItem = downloadItems.FirstOrDefault(i => i.TaskId == item.TaskId);
+                    DownloadItem downloadItem = downloadItems.FirstOrDefault(i => i.Id == item.Id);
 
                     string fileName = Path.GetFileName(item.Url);
                     string filePath = Path.Combine(item.TargetPath, GetUniqueFileName(item.TargetPath, fileName));

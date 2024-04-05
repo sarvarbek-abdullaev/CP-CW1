@@ -49,6 +49,7 @@ namespace CP.CW1._0012162
                 else
                 {
                     DownloadItem item = new DownloadItem();
+                    item.Id = items != null ? items.Length : 0;
                     item.Url = tbxUrl.Text;
                     item.TargetPath = tbxTargetPath.Text;
                     item.Progress = 0;

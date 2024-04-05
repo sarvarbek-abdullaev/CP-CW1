@@ -20,6 +20,8 @@ namespace ServiceReference1
         
         private string ErrorMessageField;
         
+        private int IdField;
+        
         private ServiceReference1.DownloadItemPriority PriorityField;
         
         private int ProgressField;
@@ -27,8 +29,6 @@ namespace ServiceReference1
         private ServiceReference1.DownloadItemStatus StatusField;
         
         private string TargetPathField;
-        
-        private string TaskIdField;
         
         private string UrlField;
         
@@ -42,6 +42,19 @@ namespace ServiceReference1
             set
             {
                 this.ErrorMessageField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
         
@@ -94,19 +107,6 @@ namespace ServiceReference1
             set
             {
                 this.TargetPathField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TaskId
-        {
-            get
-            {
-                return this.TaskIdField;
-            }
-            set
-            {
-                this.TaskIdField = value;
             }
         }
         
