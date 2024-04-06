@@ -61,6 +61,7 @@
             lblFile1 = new Label();
             lblFileTime1 = new Label();
             pbFile1 = new ProgressBar();
+            btnStart = new Button();
             SuspendLayout();
             // 
             // label1
@@ -206,7 +207,7 @@
             // 
             // btnPause
             // 
-            btnPause.Location = new Point(995, 452);
+            btnPause.Location = new Point(995, 473);
             btnPause.Margin = new Padding(5, 6, 5, 6);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(129, 46);
@@ -217,7 +218,7 @@
             // 
             // btnResume
             // 
-            btnResume.Location = new Point(995, 394);
+            btnResume.Location = new Point(995, 404);
             btnResume.Margin = new Padding(5, 6, 5, 6);
             btnResume.Name = "btnResume";
             btnResume.Size = new Size(129, 46);
@@ -228,7 +229,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(995, 336);
+            btnCancel.Location = new Point(995, 541);
             btnCancel.Margin = new Padding(5, 6, 5, 6);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(129, 46);
@@ -311,11 +312,23 @@
             pbFile1.Step = 0;
             pbFile1.TabIndex = 21;
             // 
+            // btnStart
+            // 
+            btnStart.Location = new Point(995, 337);
+            btnStart.Margin = new Padding(5, 6, 5, 6);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(129, 46);
+            btnStart.TabIndex = 22;
+            btnStart.Text = "Start";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1435, 1107);
+            Controls.Add(btnStart);
             Controls.Add(pbFile1);
             Controls.Add(lblFileTime1);
             Controls.Add(lblFile1);
@@ -380,5 +393,6 @@
         private Label label7;
         private Label lblFileTime1;
         private ProgressBar pbFile1;
+        private Button btnStart;
     }
 }

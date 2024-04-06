@@ -20,9 +20,14 @@ namespace Service
             var downloadTask = new DTask(url, targetPath, priority);
             downloadQueue.Add(downloadTask);
 
-            StartDownload(downloadTask);
+            //StartDownload(downloadTask);
             return downloadTask.TaskId;
+        }
 
+        public void StartDownloadOne(DTask task)
+        {
+            DTask task1 = downloadQueue.Find(_task => _task.TaskId == task.TaskId);
+            StartDownload(task1);
         }
 
         public List<DTask> GetDownloadQueue()
@@ -242,8 +247,6 @@ namespace Service
                 }
             }, token);
         }
-
-
 
         // A method to get the file size, which might involve sending an HTTP HEAD request
         private static async Task<long> GetFileSizeAsync(string url)

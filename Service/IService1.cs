@@ -15,6 +15,10 @@ namespace Service
 
         [OperationContract]
         List<DTask> GetDownloadQueue();
+        
+        [OperationContract]
+        void StartDownloadOne(DTask dTask);
+
         [OperationContract]
         List<DTask> GetDownloadedList();
 

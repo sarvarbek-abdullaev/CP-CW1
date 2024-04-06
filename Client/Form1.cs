@@ -9,7 +9,7 @@ namespace Client
         Service1Client client = new Service1Client();
         private List<DTask> taskList = new List<DTask>();
         private List<DTask> downloadedList = new List<DTask>();
-        DTask selectedTask = new DTask();                
+        DTask selectedTask = new DTask();
 
         public Form1()
         {
@@ -237,6 +237,28 @@ namespace Client
                 else
                 {
                     MessageBox.Show("Failed to pause download.");
+                }
+            }
+        }
+
+        private async void btnStart_Click(object sender, EventArgs e)
+        {
+            if (listViewDownloadQueue.SelectedItems.Count > 0)
+            {
+                if (listViewDownloadQueue.SelectedItems.Count > 0)
+                {
+                    var selectedItem = listViewDownloadQueue.SelectedItems[0];
+
+                    // Check if the selected item has at least 6 sub-items
+                    if (selectedItem.SubItems.Count >= 6)
+                    {
+                        string taskId = selectedItem.SubItems[5].Text;
+
+                        // Find the corresponding task in the global queue
+                        var foundTask = taskList.FirstOrDefault(task => task.TaskId.ToString() == taskId);
+
+                        await client.StartDownloadOneAsync(new StartDownloadOneRequest(foundTask));
+                    }
                 }
             }
         }

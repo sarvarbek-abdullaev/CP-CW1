@@ -204,6 +204,9 @@ namespace ServiceReference1
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadQueue", ReplyAction="http://tempuri.org/IService1/GetDownloadQueueResponse")]
         System.Threading.Tasks.Task<ServiceReference1.GetDownloadQueueResponse> GetDownloadQueueAsync(ServiceReference1.GetDownloadQueueRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartDownloadOne", ReplyAction="http://tempuri.org/IService1/StartDownloadOneResponse")]
+        System.Threading.Tasks.Task<ServiceReference1.StartDownloadOneResponse> StartDownloadOneAsync(ServiceReference1.StartDownloadOneRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadedList", ReplyAction="http://tempuri.org/IService1/GetDownloadedListResponse")]
         System.Threading.Tasks.Task<ServiceReference1.GetDownloadedListResponse> GetDownloadedListAsync(ServiceReference1.GetDownloadedListRequest request);
         
@@ -290,6 +293,36 @@ namespace ServiceReference1
         public GetDownloadQueueResponse(ServiceReference1.DTask[] GetDownloadQueueResult)
         {
             this.GetDownloadQueueResult = GetDownloadQueueResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="StartDownloadOne", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class StartDownloadOneRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public ServiceReference1.DTask dTask;
+        
+        public StartDownloadOneRequest()
+        {
+        }
+        
+        public StartDownloadOneRequest(ServiceReference1.DTask dTask)
+        {
+            this.dTask = dTask;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="StartDownloadOneResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class StartDownloadOneResponse
+    {
+        
+        public StartDownloadOneResponse()
+        {
         }
     }
     
@@ -495,6 +528,11 @@ namespace ServiceReference1
         public System.Threading.Tasks.Task<ServiceReference1.GetDownloadQueueResponse> GetDownloadQueueAsync(ServiceReference1.GetDownloadQueueRequest request)
         {
             return base.Channel.GetDownloadQueueAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.StartDownloadOneResponse> StartDownloadOneAsync(ServiceReference1.StartDownloadOneRequest request)
+        {
+            return base.Channel.StartDownloadOneAsync(request);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.GetDownloadedListResponse> GetDownloadedListAsync(ServiceReference1.GetDownloadedListRequest request)
