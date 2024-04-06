@@ -5,6 +5,7 @@ namespace CP.CW1._0012162
     public partial class Form1 : Form
     {
         private readonly Service1Client serviceClient;
+        private bool autoDownload = false;
         DownloadItem[] items;
 
         public Form1()
@@ -84,6 +85,11 @@ namespace CP.CW1._0012162
                         // Add the ListViewItem to the ListView
                         listView.Items.Add(listViewItem);
                     }
+
+                    if(autoDownload)
+                    {
+                        await DownloadFile(item);
+                    }
                 };
             }
             catch (Exception ex)
@@ -92,7 +98,7 @@ namespace CP.CW1._0012162
             }
         }
 
-        private void btnDownload1_Click(object sender, EventArgs e)
+        private async void btnDownload1_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
             btnDownload1.Text = "Download";
@@ -100,7 +106,12 @@ namespace CP.CW1._0012162
             btnGetNext1.Visible = false;
 
             DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
+            if (item == null)
+            {
+                return;
+            }
+
+            await DownloadFile(item);
 
             progressBar1.Value = 100;
             btnCancel1.Enabled = false;
@@ -108,7 +119,7 @@ namespace CP.CW1._0012162
             btnGetNext1.Visible = true;
         }
 
-        private void btnDownload2_Click(object sender, EventArgs e)
+        private async void btnDownload2_Click(object sender, EventArgs e)
         {
             progressBar2.Value = 0;
             btnDownload2.Text = "Download";
@@ -116,7 +127,12 @@ namespace CP.CW1._0012162
             btnGetNext2.Visible = false;
 
             DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
+            if (item == null)
+            {
+                return;
+            }
+
+            await DownloadFile(item);
 
             progressBar2.Value = 100;
             btnCancel2.Enabled = false;
@@ -124,7 +140,7 @@ namespace CP.CW1._0012162
             btnGetNext2.Visible = true;
         }
 
-        private void btnDownload3_Click(object sender, EventArgs e)
+        private async void btnDownload3_Click(object sender, EventArgs e)
         {
             progressBar3.Value = 0;
             btnDownload3.Text = "Download";
@@ -132,7 +148,12 @@ namespace CP.CW1._0012162
             btnGetNext3.Visible = false;
 
             DownloadItem item = FindFileGoingToBeDownloaded();
-            DownloadFile(item);
+            if (item == null)
+            {
+                return;
+            }
+
+            await DownloadFile(item);
 
             progressBar3.Value = 100;
             btnCancel3.Enabled = false;
@@ -159,18 +180,21 @@ namespace CP.CW1._0012162
         {
             progressBar1.Value = 0;
             btnDownload1.Text = "Download";
+            btnGetNext1.Visible = false;
         }
 
         private void btnGetNext2_Click(object sender, EventArgs e)
         {
             progressBar2.Value = 0;
             btnDownload2.Text = "Download";
+            btnGetNext2.Visible = false;
         }
 
         private void btnGetNext3_Click(object sender, EventArgs e)
         {
             progressBar3.Value = 0;
             btnDownload3.Text = "Download";
+            btnGetNext3.Visible = false;
         }
 
         private DownloadItem FindFileGoingToBeDownloaded()
@@ -210,11 +234,11 @@ namespace CP.CW1._0012162
             return null;
         }
 
-        private void DownloadFile(DownloadItem item)
+        private async Task DownloadFile(DownloadItem item)
         {
             try
             {
-                items = serviceClient.DownloadFile(item);
+                items = await serviceClient.DownloadFileAsync(item);
 
                 listView.Items.Clear();
                 // Add each item from the 'items' list to the ListView
@@ -236,6 +260,49 @@ namespace CP.CW1._0012162
             catch (Exception ex)
             {
                 MessageBox.Show($"Error downloading file: {ex.Message}");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private async Task DownloadAllFiles()
+        {
+            if (items.Length < 1)
+            {
+                MessageBox.Show("No items found to download, add some");
+                return;
+            }
+
+            foreach (DownloadItem item in items)
+            {
+                if (item.Progress != 100) // Check if file is not already downloaded
+                {
+                    await DownloadFile(item);
+                }
+            }
+        }
+
+        private async void chkDownloadAll_CheckedChanged(object sender, EventArgs e)
+        {
+            autoDownload = chkDownloadAll.Checked;
+            if (autoDownload)
+            {
+                // Hide individual download buttons
+                btnDownload1.Visible = false;
+                btnDownload2.Visible = false;
+                btnDownload3.Visible = false;
+
+                await DownloadAllFiles();
+            }
+            else
+            {
+                // Show individual download buttons
+                btnDownload1.Visible = true;
+                btnDownload2.Visible = true;
+                btnDownload3.Visible = true;
             }
         }
     }

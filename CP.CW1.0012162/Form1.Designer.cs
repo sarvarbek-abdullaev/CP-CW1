@@ -59,6 +59,8 @@
             btnGetNext3 = new Button();
             btnGetNext2 = new Button();
             btnGetNext1 = new Button();
+            timer = new System.Windows.Forms.Timer(components);
+            chkDownloadAll = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataSet1BindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -315,11 +317,27 @@
             btnGetNext1.Visible = false;
             btnGetNext1.Click += btnGetNext1_Click;
             // 
+            // timer
+            // 
+            timer.Interval = 1000;
+            // 
+            // chkDownloadAll
+            // 
+            chkDownloadAll.AutoSize = true;
+            chkDownloadAll.Location = new Point(945, 285);
+            chkDownloadAll.Name = "chkDownloadAll";
+            chkDownloadAll.Size = new Size(186, 34);
+            chkDownloadAll.TabIndex = 31;
+            chkDownloadAll.Text = "Auto-Download";
+            chkDownloadAll.UseVisualStyleBackColor = true;
+            chkDownloadAll.CheckedChanged += chkDownloadAll_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1301, 783);
+            Controls.Add(chkDownloadAll);
             Controls.Add(progressLabelName3);
             Controls.Add(progressLabelName2);
             Controls.Add(progressLabelName1);
@@ -346,6 +364,7 @@
             Controls.Add(btnDownload1);
             Name = "Form1";
             Text = "Download Manager";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataSet1BindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -383,5 +402,7 @@
         private Button btnGetNext3;
         private Button btnGetNext2;
         private Button btnGetNext1;
+        private System.Windows.Forms.Timer timer;
+        private CheckBox chkDownloadAll;
     }
 }

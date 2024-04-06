@@ -169,19 +169,10 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
-        ServiceReference1.DownloadItem[] DownloadFile(ServiceReference1.DownloadItem item);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DownloadFile", ReplyAction="http://tempuri.org/IService1/DownloadFileResponse")]
         System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> DownloadFileAsync(ServiceReference1.DownloadItem item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadQueue", ReplyAction="http://tempuri.org/IService1/GetDownloadQueueResponse")]
-        ServiceReference1.DownloadItem[] GetDownloadQueue();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadQueue", ReplyAction="http://tempuri.org/IService1/GetDownloadQueueResponse")]
         System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> GetDownloadQueueAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewDownloadItem", ReplyAction="http://tempuri.org/IService1/AddNewDownloadItemResponse")]
-        ServiceReference1.DownloadItem[] AddNewDownloadItem(ServiceReference1.DownloadItem item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNewDownloadItem", ReplyAction="http://tempuri.org/IService1/AddNewDownloadItemResponse")]
         System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> AddNewDownloadItemAsync(ServiceReference1.DownloadItem item);
@@ -237,29 +228,14 @@ namespace ServiceReference1
         {
         }
         
-        public ServiceReference1.DownloadItem[] DownloadFile(ServiceReference1.DownloadItem item)
-        {
-            return base.Channel.DownloadFile(item);
-        }
-        
         public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> DownloadFileAsync(ServiceReference1.DownloadItem item)
         {
             return base.Channel.DownloadFileAsync(item);
         }
         
-        public ServiceReference1.DownloadItem[] GetDownloadQueue()
-        {
-            return base.Channel.GetDownloadQueue();
-        }
-        
         public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> GetDownloadQueueAsync()
         {
             return base.Channel.GetDownloadQueueAsync();
-        }
-        
-        public ServiceReference1.DownloadItem[] AddNewDownloadItem(ServiceReference1.DownloadItem item)
-        {
-            return base.Channel.AddNewDownloadItem(item);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.DownloadItem[]> AddNewDownloadItemAsync(ServiceReference1.DownloadItem item)
