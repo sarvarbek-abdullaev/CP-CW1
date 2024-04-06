@@ -20,7 +20,6 @@ namespace Service
             var downloadTask = new DTask(url, targetPath, priority);
             downloadQueue.Add(downloadTask);
 
-            //StartDownload(downloadTask);
             return downloadTask.TaskId;
         }
 
@@ -29,6 +28,23 @@ namespace Service
             DTask task1 = downloadQueue.Find(_task => _task.TaskId == task.TaskId);
             StartDownload(task1);
         }
+
+        public void StartDownloadAll()
+        {
+            foreach (var task in downloadQueue)
+            {
+                Task.Run(() => StartDownload(task));
+            }
+        }
+
+        public void PauseAll()
+        {
+            foreach (var task in downloadQueue)
+            {
+                Task.Run(() => PauseDownload(task.TaskId));
+            }
+        }
+
 
         public List<DTask> GetDownloadQueue()
         {
@@ -242,7 +258,11 @@ namespace Service
                     if (task.Status == DTaskStatus.Finished || task.Status == DTaskStatus.Error)
                     {
                         downloadQueue.Remove(task);
-                        downloadedList.Add(task);
+
+                        if(task.Status == DTaskStatus.Finished)
+                        {
+                            downloadedList.Add(task);
+                        }
                     }
                 }
             }, token);

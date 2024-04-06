@@ -20,6 +20,12 @@ namespace Service
         void StartDownloadOne(DTask dTask);
 
         [OperationContract]
+        void StartDownloadAll();
+
+        [OperationContract]
+        void PauseAll();
+
+        [OperationContract]
         List<DTask> GetDownloadedList();
 
         [OperationContract]

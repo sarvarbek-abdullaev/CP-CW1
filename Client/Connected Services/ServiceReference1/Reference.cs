@@ -207,6 +207,12 @@ namespace ServiceReference1
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartDownloadOne", ReplyAction="http://tempuri.org/IService1/StartDownloadOneResponse")]
         System.Threading.Tasks.Task<ServiceReference1.StartDownloadOneResponse> StartDownloadOneAsync(ServiceReference1.StartDownloadOneRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartDownloadAll", ReplyAction="http://tempuri.org/IService1/StartDownloadAllResponse")]
+        System.Threading.Tasks.Task<ServiceReference1.StartDownloadAllResponse> StartDownloadAllAsync(ServiceReference1.StartDownloadAllRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PauseAll", ReplyAction="http://tempuri.org/IService1/PauseAllResponse")]
+        System.Threading.Tasks.Task<ServiceReference1.PauseAllResponse> PauseAllAsync(ServiceReference1.PauseAllRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDownloadedList", ReplyAction="http://tempuri.org/IService1/GetDownloadedListResponse")]
         System.Threading.Tasks.Task<ServiceReference1.GetDownloadedListResponse> GetDownloadedListAsync(ServiceReference1.GetDownloadedListRequest request);
         
@@ -322,6 +328,50 @@ namespace ServiceReference1
     {
         
         public StartDownloadOneResponse()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="StartDownloadAll", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class StartDownloadAllRequest
+    {
+        
+        public StartDownloadAllRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="StartDownloadAllResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class StartDownloadAllResponse
+    {
+        
+        public StartDownloadAllResponse()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PauseAll", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class PauseAllRequest
+    {
+        
+        public PauseAllRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PauseAllResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class PauseAllResponse
+    {
+        
+        public PauseAllResponse()
         {
         }
     }
@@ -533,6 +583,16 @@ namespace ServiceReference1
         public System.Threading.Tasks.Task<ServiceReference1.StartDownloadOneResponse> StartDownloadOneAsync(ServiceReference1.StartDownloadOneRequest request)
         {
             return base.Channel.StartDownloadOneAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.StartDownloadAllResponse> StartDownloadAllAsync(ServiceReference1.StartDownloadAllRequest request)
+        {
+            return base.Channel.StartDownloadAllAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.PauseAllResponse> PauseAllAsync(ServiceReference1.PauseAllRequest request)
+        {
+            return base.Channel.PauseAllAsync(request);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.GetDownloadedListResponse> GetDownloadedListAsync(ServiceReference1.GetDownloadedListRequest request)

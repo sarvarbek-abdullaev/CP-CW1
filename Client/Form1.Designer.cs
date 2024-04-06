@@ -62,6 +62,8 @@
             lblFileTime1 = new Label();
             pbFile1 = new ProgressBar();
             btnStart = new Button();
+            btnStartAll = new Button();
+            btnPauseAll = new Button();
             SuspendLayout();
             // 
             // label1
@@ -207,7 +209,7 @@
             // 
             // btnPause
             // 
-            btnPause.Location = new Point(995, 473);
+            btnPause.Location = new Point(995, 406);
             btnPause.Margin = new Padding(5, 6, 5, 6);
             btnPause.Name = "btnPause";
             btnPause.Size = new Size(129, 46);
@@ -218,7 +220,7 @@
             // 
             // btnResume
             // 
-            btnResume.Location = new Point(995, 404);
+            btnResume.Location = new Point(995, 473);
             btnResume.Margin = new Padding(5, 6, 5, 6);
             btnResume.Name = "btnResume";
             btnResume.Size = new Size(129, 46);
@@ -323,11 +325,35 @@
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
+            // btnStartAll
+            // 
+            btnStartAll.Location = new Point(1155, 337);
+            btnStartAll.Margin = new Padding(5, 6, 5, 6);
+            btnStartAll.Name = "btnStartAll";
+            btnStartAll.Size = new Size(129, 46);
+            btnStartAll.TabIndex = 23;
+            btnStartAll.Text = "Start All";
+            btnStartAll.UseVisualStyleBackColor = true;
+            btnStartAll.Click += btnStartAll_Click;
+            // 
+            // btnPauseAll
+            // 
+            btnPauseAll.Location = new Point(1155, 406);
+            btnPauseAll.Margin = new Padding(5, 6, 5, 6);
+            btnPauseAll.Name = "btnPauseAll";
+            btnPauseAll.Size = new Size(129, 46);
+            btnPauseAll.TabIndex = 24;
+            btnPauseAll.Text = "Pause All";
+            btnPauseAll.UseVisualStyleBackColor = true;
+            btnPauseAll.Click += btnPauseAll_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1435, 1107);
+            Controls.Add(btnPauseAll);
+            Controls.Add(btnStartAll);
             Controls.Add(btnStart);
             Controls.Add(pbFile1);
             Controls.Add(lblFileTime1);
@@ -394,5 +420,7 @@
         private Label lblFileTime1;
         private ProgressBar pbFile1;
         private Button btnStart;
+        private Button btnStartAll;
+        private Button btnPauseAll;
     }
 }

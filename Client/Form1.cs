@@ -294,5 +294,29 @@ namespace Client
                 }
             }
         }
+
+        private async void btnStartAll_Click(object sender, EventArgs e)
+        {
+            if (listViewDownloadQueue.Items.Count > 0)
+            {
+                await client.StartDownloadAllAsync(new StartDownloadAllRequest());
+            }
+            else
+            {
+                MessageBox.Show("Add some item before start");
+            }
+        }
+
+        private async void btnPauseAll_Click(object sender, EventArgs e)
+        {
+            if (listViewDownloadQueue.Items.Count > 0)
+            {
+                await client.PauseAllAsync(new PauseAllRequest());
+            }
+            else
+            {
+                MessageBox.Show("Add some item before pause");
+            }
+        }
     }
 }
